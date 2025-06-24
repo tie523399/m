@@ -1,0 +1,181 @@
+/* 打字機動畫樣式 */
+.typewriter-container {
+  display: inline-block;
+  min-height: 1.5em;
+}
+
+.typewriter-text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  background-color: currentColor;
+  width: 2px;
+  margin-left: 2px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .typewriter-text {
+    font-size: 0.875rem;
+    white-space: normal;
+    overflow: visible;
+  }
+}
+
+/* 平滑的文字出現動畫 */
+@keyframes fadeInChar {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typewriter-text span {
+  animation: fadeInChar 0.1s ease-out forwards;
+}
+
+/* 閃爍游標動畫 */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.typewriter-cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* 公告橫幅額外樣式 */
+.announcement-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.announcement-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* 公告指示器樣式 */
+.announcement-indicators {
+  display: flex;
+  gap: 4px;
+}
+
+.announcement-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.announcement-indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+.announcement-indicator:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* 公告內容漸入動畫 */
+.announcement-content {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 公告關閉按鈕樣式 */
+.announcement-close {
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.announcement-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* 響應式公告樣式 */
+@media (max-width: 640px) {
+  .typewriter-container {
+    max-width: 200px;
+  }
+  
+  .typewriter-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* 高對比度支持 */
+@media (prefers-contrast: high) {
+  .typewriter-cursor {
+    background-color: white;
+  }
+  
+  .announcement-indicator {
+    border: 1px solid white;
+  }
+}
+
+/* 減少動畫偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-text span {
+    animation: none;
+  }
+  
+  .announcement-banner::before {
+    animation: none;
+  }
+  
+  .typewriter-cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
