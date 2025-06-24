@@ -1,0 +1,27 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+startCommand = "npm run init-db && npm start"
+
+[env]
+NODE_ENV = "production"
+PORT = "${{ PORT }}"
+DATABASE_PATH = "/app/database/gelato.db"
+JWT_SECRET = "${{ JWT_SECRET }}"
+SESSION_SECRET = "${{ SESSION_SECRET }}"
+TELEGRAM_BOT_TOKEN = "${{ TELEGRAM_BOT_TOKEN }}"
+TELEGRAM_CHAT_ID = "${{ TELEGRAM_CHAT_ID }}"
+FRONTEND_URL = "${{ FRONTEND_URL }}"
+
+[variables]
+# 這些變量在Railway控制台中設定
+# FRONTEND_URL = "https://your-frontend-domain.netlify.app"
+# JWT_SECRET = "your-jwt-secret-key"
+# SESSION_SECRET = "your-session-secret-key"
+# TELEGRAM_BOT_TOKEN = "your-telegram-bot-token"
+# TELEGRAM_CHAT_ID = "your-telegram-chat-id"
