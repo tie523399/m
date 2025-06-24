@@ -1,0 +1,22 @@
+[build]
+  publish = "dist"
+  command = "pnpm build"
+
+[build.environment]
+  VITE_API_BASE_URL = "https://your-backend-domain.railway.app/api"
+  VITE_APP_TITLE = "海水不可斗量義式手工冰淇淋"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.deploy-preview]
+  command = "pnpm build"
+  [context.deploy-preview.environment]
+    VITE_API_BASE_URL = "https://your-backend-domain.railway.app/api"
+
+[context.branch-deploy]
+  command = "pnpm build"
+  [context.branch-deploy.environment]
+    VITE_API_BASE_URL = "https://your-backend-domain.railway.app/api"
